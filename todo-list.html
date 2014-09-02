@@ -1,5 +1,5 @@
 <link rel="import" href="../components/polymer/polymer.html">
-<link rel="import" href="../post-service/post-service.html">
+<link rel="import" href="todo-service.html">
 <link rel="import" href="todo-item.html">
 
 <polymer-element name="todo-list" attributes="show">
@@ -9,25 +9,31 @@
       display: block;
       width: 100%;
     }
-    post-card {
-      margin-bottom: 30px;
+    todo-item {
+      margin-bottom: 1em;
+      border-bottom: thin #666 dotted;
     }
     </style>
 
-    <todo-service id="service" posts="{{items}}"></todo-service>
+    <todo-service id="service" items="{{items}}"></todo-service>
     
-    <div layout vertical center>
+    <div>
       <template repeat="{{item in items}}">
-        <todo-item></todo-item>   
+        <todo-item>{{item.item}}</todo-item>   
       </template>
     </div>
   </template>
 
   <script>
-  Polymer({
-    handleFavorite: function(event, detail, sender) {
-      var post = sender.templateInstance.model.post;
-      this.$.service.setFavorite(post.uid, post.favorite);
+  Polymer('todo-list',{
+
+    created: function() {
+
+      //this.items = [];
+    },
+    ready: function() {
+
+      console.log(this.items.length);
     }
   });
   </script>

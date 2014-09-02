@@ -64,11 +64,14 @@
   <script>
   Polymer('todo-service', {
     created: function() {
-      this.posts = [];
+      this.items = [];
+     
     },
-    postsLoaded: function() {
+    itemsLoaded: function() {
       // Make a copy of the loaded data
       this.items = this.$.ajax.response.slice(0);
+     
+ 
     },
     /** 
      * Update the service with the current favorite value.
